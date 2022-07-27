@@ -1,6 +1,6 @@
 package cn.umacraft.mods.skill.util
 
-import cn.umacraft.mods.skill.item.FatherSkill
+import cn.umacraft.mods.skill.skill.FatherSkill
 import java.util.*
 
 object TempData {

@@ -25,6 +25,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import net.minecraftforge.registries.DeferredRegister
+import kotlin.math.absoluteValue
 
 @Mod(MOD_ID)
 class Skill {
@@ -90,9 +91,9 @@ class Skill {
                 when (val skill = TempData.PlayerSkillMap[uuid]) {
                     is ISpeedable -> ridingEntity.addPotionEffect(
                         EffectInstance(
-                            Effects.SPEED,
+                            if (skill.speed >= 0) Effects.SPEED else Effects.SLOWNESS,
                             if (skill.isPassive) 10000000 else 10,
-                            skill.speed - 1
+                            skill.speed.absoluteValue - 1
                         )
                     )
 

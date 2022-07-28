@@ -1,10 +1,17 @@
 package cn.umacraft.mods.skill
 
 import cn.umacraft.mods.skill.skill.FatherSkill
+import cn.umacraft.mods.skill.skill.IPlayerEffect
+import cn.umacraft.mods.skill.skill.ISpeedable
 import cn.umacraft.mods.skill.skill.TestSkill
 import cn.umacraft.mods.skill.skill.gold.Speed1Skill
 import cn.umacraft.mods.skill.skill.gold.Speed2Skill
 import cn.umacraft.mods.skill.skill.green.road.*
+import cn.umacraft.mods.skill.skill.green.weather.*
+import cn.umacraft.mods.skill.skill.purple.road.*
+import cn.umacraft.mods.skill.skill.purple.weather.RainyDebuffSkill
+import cn.umacraft.mods.skill.skill.purple.weather.SnowyDebuffSkill
+import cn.umacraft.mods.skill.skill.purple.weather.SunnyDebuffSkill
 import cn.umacraft.mods.skill.util.ITEMS
 import cn.umacraft.mods.skill.util.MOD_ID
 import cn.umacraft.mods.skill.util.TempData
@@ -32,13 +39,42 @@ class Skill {
             listOf(
                 TestSkill::class.java,
 
+
                 Speed1Skill::class.java,
                 Speed2Skill::class.java,
 
+
                 `13Buff1Skill`::class.java,
                 `13Buff2Skill`::class.java,
+
                 `68Buff1Skill`::class.java,
-                `68Buff2Skill`::class.java
+                `68Buff2Skill`::class.java,
+
+                LeftBuff1Skill::class.java,
+                LeftBuff2Skill::class.java,
+
+                RightBuff1Skill::class.java,
+                RightBuff2Skill::class.java,
+
+                SuperLucky7Skill::class.java,
+
+                SnowyBuff1Skill::class.java,
+                SnowyBuff2Skill::class.java,
+
+                RainyBuff1Skill::class.java,
+                RainyBuff2Skill::class.java,
+
+                SunnyBuff1Skill::class.java,
+                SunnyBuff2Skill::class.java,
+
+
+                SnowyDebuffSkill::class.java,
+                RainyDebuffSkill::class.java,
+                SunnyDebuffSkill::class.java,
+                LeftDebuffSkill::class.java,
+                RightDebuffSkill::class.java,
+                `13DebuffSkill`::class.java,
+                `68DebuffSkill`::class.java
             )
         )
     }
@@ -51,8 +87,22 @@ class Skill {
 
         if (TempData.PlayerSkillMap.containsKey(uuid)) {
             if (ridingEntity != null && ridingEntity is AbstractChestedHorseEntity) {
-                when (TempData.PlayerSkillMap[uuid]) {
-                    is TestSkill -> ridingEntity.addPotionEffect(EffectInstance(Effects.SPEED, 5 * 20, 5))
+                when (val skill = TempData.PlayerSkillMap[uuid]) {
+                    is ISpeedable -> ridingEntity.addPotionEffect(
+                        EffectInstance(
+                            Effects.SPEED,
+                            if (skill.isPassive) 10000000 else 10,
+                            skill.speed - 1
+                        )
+                    )
+
+                    is IPlayerEffect -> player.addPotionEffect(
+                        EffectInstance(
+                            skill.playerEffect,
+                            skill.duration,
+                            skill.level - 1
+                        )
+                    )
                 }
             }
             TempData.PlayerSkillMap.remove(uuid)

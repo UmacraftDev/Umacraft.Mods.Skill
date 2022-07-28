@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Food
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.potion.Effect
 import net.minecraft.world.World
 
 abstract class FatherSkill : Item(
@@ -21,6 +22,8 @@ abstract class FatherSkill : Item(
 ) {
     abstract val registryTag: String
 
+    abstract val isPassive: Boolean
+
     override fun onItemUseFinish(stack: ItemStack, worldIn: World, entityLiving: LivingEntity): ItemStack {
         if (entityLiving is PlayerEntity) {
             TempData.PlayerSkillMap[entityLiving.uniqueID] = this
@@ -31,5 +34,13 @@ abstract class FatherSkill : Item(
 }
 
 interface ISpeedable {
-    fun getSpeed(): Int
+    val speed: Int
+}
+
+interface IPlayerEffect {
+    val playerEffect: Effect
+
+    val duration: Int
+
+    val level: Int
 }

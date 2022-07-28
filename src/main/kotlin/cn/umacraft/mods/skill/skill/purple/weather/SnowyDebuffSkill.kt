@@ -1,3 +1,15 @@
 package cn.umacraft.mods.skill.skill.purple.weather
 
-class SnowyDebuffSkill
+import cn.umacraft.mods.skill.skill.FatherSkill
+import cn.umacraft.mods.skill.skill.ISpeedable
+
+class SnowyDebuffSkill : FatherSkill(), ISpeedable {
+    override val speed: Int
+        get() = -1
+
+    override val registryTag: String
+        get() = "purple_snowydebuff"
+
+    override val isPassive: Boolean
+        get() = true
+}

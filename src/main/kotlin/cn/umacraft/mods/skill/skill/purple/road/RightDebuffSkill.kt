@@ -1,3 +1,15 @@
 package cn.umacraft.mods.skill.skill.purple.road
 
-class RightDebuffSkill
+import cn.umacraft.mods.skill.skill.FatherSkill
+import cn.umacraft.mods.skill.skill.ISpeedable
+
+class RightDebuffSkill : FatherSkill(), ISpeedable {
+    override val speed: Int
+        get() = -1
+
+    override val registryTag: String
+        get() = "purple_rightdebuff"
+
+    override val isPassive: Boolean
+        get() = true
+}

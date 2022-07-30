@@ -18,7 +18,7 @@ import cn.umacraft.mods.skill.skill.red.player.MagicianSkill
 import cn.umacraft.mods.skill.util.ITEMS
 import cn.umacraft.mods.skill.util.MOD_ID
 import cn.umacraft.mods.skill.util.TempData
-import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity
+import net.minecraft.entity.passive.horse.AbstractHorseEntity
 import net.minecraft.item.Item
 import net.minecraft.potion.EffectInstance
 import net.minecraft.potion.Effects
@@ -98,27 +98,38 @@ class Skill {
         val ridingEntity = player.ridingEntity
 
         if (TempData.PlayerSkillMap.containsKey(uuid)) {
-            if (ridingEntity != null && ridingEntity is AbstractChestedHorseEntity) {
+            if (ridingEntity != null && ridingEntity is AbstractHorseEntity) {
+                println("player: ${player.name.string}, riding, and used some skill")
+
                 val skill = TempData.PlayerSkillMap[uuid]
 
                 // client side
 
-                if (skill is ISelfSpeedable) ridingEntity.addPotionEffect(
-                    EffectInstance(
-                        if (skill.speed >= 0) Effects.SPEED else Effects.SLOWNESS,
-                        if (skill.isPassive) 10000000 * 20 else 10 * 20,
-                        skill.speed.absoluteValue - 1
-                    )
-                )
+                if (skill is ISelfSpeedable) {
+                    ridingEntity.addPotionEffect(
+                        EffectInstance(
+                            if (skill.speed >= 0) Effects.SPEED else Effects.SLOWNESS,
+                            if (skill.isPassive) 10000000 * 20 else 10 * 20,
+                            skill.speed.absoluteValue - 1
+                        )
+                    ); println("player ${player.name.string}, at ISelfSpeedable, added Effect of $skill")
+                }
 
                 // server side
 
                 if (player.isServerWorld && player.server != null) {
                     val server = player.server!!
                     val playerList = server.playerList
-                    val players = playerList.players
-                    players.remove(player)
-                    playerList.oppedPlayerNames.forEach { players.remove(playerList.getPlayerByUsername(it)) }
+                    val players = playerList.players.toMutableList().apply {
+                        remove(player)
+                        forEach {
+                            if (it.name.string in playerList.oppedPlayerNames) {
+                                remove(it)
+                            }
+                        }
+                    }
+
+                    println(players)
 
                     if (skill is IOtherPlayerEffect) players.forEach {
                         it.addPotionEffect(
@@ -128,11 +139,12 @@ class Skill {
                                 skill.level - 1
                             )
                         )
+                        println("player ${it.name.string}, at IOtherPlayerEffect, added Effect of $skill")
                     }
 
                     if (skill is IOtherSpeedable) players.forEach {
                         val ridingEntity = it.ridingEntity
-                        if (ridingEntity == null || ridingEntity !is AbstractChestedHorseEntity) return@forEach
+                        if (ridingEntity == null || ridingEntity !is AbstractHorseEntity) return@forEach
 
                         ridingEntity.addPotionEffect(
                             EffectInstance(
@@ -141,6 +153,7 @@ class Skill {
                                 skill.speed.absoluteValue - 1
                             )
                         )
+                        println("player ${it.name.string}, at IOtherSpeedable ,added Effect of $skill")
                     }
                 }
             }

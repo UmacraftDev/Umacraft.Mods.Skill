@@ -1,9 +1,9 @@
 package cn.umacraft.mods.skill.skill.purple.weather
 
 import cn.umacraft.mods.skill.skill.FatherSkill
-import cn.umacraft.mods.skill.skill.ISpeedable
+import cn.umacraft.mods.skill.skill.ISelfSpeedable
 
-class RainyDebuffSkill : FatherSkill(), ISpeedable {
+class RainyDebuffSkill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = -1
 

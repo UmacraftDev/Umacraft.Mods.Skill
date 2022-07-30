@@ -33,11 +33,15 @@ abstract class FatherSkill : Item(
     }
 }
 
-interface ISpeedable {
+interface ISelfSpeedable {
     val speed: Int
 }
 
-interface IPlayerEffect {
+interface IOtherSpeedable {
+    val speed: Int
+}
+
+interface IOtherPlayerEffect {
     val playerEffect: Effect
 
     val duration: Int

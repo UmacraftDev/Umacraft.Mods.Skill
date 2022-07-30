@@ -32,5 +32,11 @@
   "item.skill.purple_leftdebuff": "PurpleSKill - Counterclockwise -",
   "item.skill.purple_rightdebuff": "PurpleSkill - Clockwise -",
   "item.skill.purple_13debuff": "PurpleSkill - Inner Gate -",
-  "item.skill.purple_68debuff": "PurpleSkill - Outer Gate -"
+  "item.skill.purple_68debuff": "PurpleSkill - Outer Gate -",
+  "item.skill.red_monopoly": "RedSkill - Monopoly",
+  "item.skill.red_bondage": "RedSkill - Bondage",
+  "item.skill.red_magician": "RedSkill - Magician",
+  "item.skill.red_blindfold": "RedSkill - Blindfold",
+  "item.skill.red_disturbance_of_illusion": "RedSkill - Disturbance of Illusion",
+  "item.skill_red_disturbance": "RedSkill - Disturbance"
 }

@@ -1,9 +1,9 @@
 package cn.umacraft.mods.skill.skill.green.weather
 
 import cn.umacraft.mods.skill.skill.FatherSkill
-import cn.umacraft.mods.skill.skill.ISpeedable
+import cn.umacraft.mods.skill.skill.ISelfSpeedable
 
-class SnowyBuff1Skill : FatherSkill(), ISpeedable {
+class SnowyBuff1Skill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = 1
 
@@ -14,7 +14,7 @@ class SnowyBuff1Skill : FatherSkill(), ISpeedable {
         get() = true
 }
 
-class SnowyBuff2Skill : FatherSkill(), ISpeedable {
+class SnowyBuff2Skill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = 2
 

@@ -1,9 +1,9 @@
 package cn.umacraft.mods.skill.skill.purple.road
 
 import cn.umacraft.mods.skill.skill.FatherSkill
-import cn.umacraft.mods.skill.skill.ISpeedable
+import cn.umacraft.mods.skill.skill.ISelfSpeedable
 
-class RightDebuffSkill : FatherSkill(), ISpeedable {
+class RightDebuffSkill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = -1
 

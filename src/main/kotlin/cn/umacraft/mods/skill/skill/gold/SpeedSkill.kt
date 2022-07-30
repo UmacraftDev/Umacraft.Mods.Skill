@@ -1,9 +1,9 @@
 package cn.umacraft.mods.skill.skill.gold
 
 import cn.umacraft.mods.skill.skill.FatherSkill
-import cn.umacraft.mods.skill.skill.ISpeedable
+import cn.umacraft.mods.skill.skill.ISelfSpeedable
 
-class Speed1Skill : FatherSkill(), ISpeedable {
+class Speed1Skill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = 1
 
@@ -14,7 +14,7 @@ class Speed1Skill : FatherSkill(), ISpeedable {
         get() = false
 }
 
-class Speed2Skill : FatherSkill(), ISpeedable {
+class Speed2Skill : FatherSkill(), ISelfSpeedable {
     override val speed: Int
         get() = 2
 

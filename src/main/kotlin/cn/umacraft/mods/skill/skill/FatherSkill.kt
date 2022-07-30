@@ -31,6 +31,12 @@ abstract class FatherSkill : Item(
 
         return super.onItemUseFinish(stack, worldIn, entityLiving)
     }
+
+    override fun onUse(worldIn: World, livingEntityIn: LivingEntity, stack: ItemStack, count: Int) {
+        super.onUse(worldIn, livingEntityIn, stack, count)
+    }
+
+
 }
 
 interface ISelfSpeedable {

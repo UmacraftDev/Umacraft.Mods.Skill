@@ -3,14 +3,6 @@
   "item.skill.test_skill": "Test Skill",
   "item.skill.gold_speed1": "GoldSkill - Final Sprint",
   "item.skill.gold_speed2": "GoldSkill - Spare no Effort",
-  "item.skill.gold_lisong": "[Not Implemented Yet]GoldSkill from Lisong",
-  "item.skill.gold_taoyuanbin": "[Not Implemented Yet]GoldSkill from Taoyuanbin",
-  "item.skill.gold_beihai": "[Not Implemented Yet]GoldSkill from Beihai",
-  "item.skill.gold_qiji": "[Not Implemented Yet]GoldSkill from Qiji",
-  "item.skill.gold_daotian": "[Not Implemented Yet]GoldSkill from daotian",
-  "item.skill.gold_xilu": "[Not Implemented Yet]GoldSkill from Xilu",
-  "item.skill.gold_shenzan": "[Not Implemented Yet]GoldSkill from Shenzan",
-  "item.skill.gold_mingwu": "[Not Implemented Yet]GoldSkill from Mingwu",
   "item.skill.green_snowybuff1": "GreenSkill - Snowy",
   "item.skill.green_snowybuff2": "GreenSkill - Snowy +",
   "item.skill.green_rainybuff1": "GreenSkill - Rainy",
@@ -38,5 +30,5 @@
   "item.skill.red_magician": "RedSkill - Magician",
   "item.skill.red_blindfold": "RedSkill - Blindfold",
   "item.skill.red_disturbance_of_illusion": "RedSkill - Disturbance of Illusion",
-  "item.skill_red_disturbance": "RedSkill - Disturbance"
+  "item.skill.red_disturbance": "RedSkill - Disturbance"
 }

@@ -3,14 +3,6 @@
   "item.skill.test_skill": "测试技能",
   "item.skill.gold_speed1": "末脚",
   "item.skill.gold_speed2": "全身全霊",
-  "item.skill.gold_lisong": "",
-  "item.skill.gold_taoyuanbin": "",
-  "item.skill.gold_beihai": "",
-  "item.skill.gold_qiji": "",
-  "item.skill.gold_daotian": "",
-  "item.skill.gold_xilu": "",
-  "item.skill.gold_shenzan": "",
-  "item.skill.gold_mingwu": "",
   "item.skill.green_snowybuff1": "雪の日○",
   "item.skill.green_snowybuff2": "雪の日◎",
   "item.skill.green_rainybuff1": "雨の日○",
@@ -32,5 +24,11 @@
   "item.skill.purple_leftdebuff": "左回り×",
   "item.skill.purple_rightdebuff": "右回り×",
   "item.skill.purple_13debuff": "内枠苦手",
-  "item.skill.purple_68debuff": "外枠苦手"
+  "item.skill.purple_68debuff": "外枠苦手",
+  "item.skill.red_monopoly": "独占力",
+  "item.skill.red_bondage": "束縛",
+  "item.skill.red_magician": "奇術師",
+  "item.skill.red_blindfold": "目くらまし",
+  "item.skill.red_disturbance_of_illusion": "幻惑のかく乱",
+  "item.skill.red_disturbance": "かく乱"
 }

@@ -71,8 +71,7 @@ class Skill {
 
                 SunnyBuff1Skill::class.java,
                 SunnyBuff2Skill::class.java,
-
-
+                
                 SnowyDebuffSkill::class.java,
                 RainyDebuffSkill::class.java,
                 SunnyDebuffSkill::class.java,

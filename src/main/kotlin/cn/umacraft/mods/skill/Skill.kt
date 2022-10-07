@@ -48,7 +48,6 @@ class Skill {
                 Speed1Skill::class.java,
                 Speed2Skill::class.java,
 
-
                 `13Buff1Skill`::class.java,
                 `13Buff2Skill`::class.java,
 
@@ -71,7 +70,6 @@ class Skill {
 
                 SunnyBuff1Skill::class.java,
                 SunnyBuff2Skill::class.java,
-
 
                 SnowyDebuffSkill::class.java,
                 RainyDebuffSkill::class.java,

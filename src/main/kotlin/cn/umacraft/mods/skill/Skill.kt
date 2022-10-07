@@ -48,7 +48,7 @@ class Skill {
                 Speed1Skill::class.java,
                 Speed2Skill::class.java,
 
-
+                
                 `13Buff1Skill`::class.java,
                 `13Buff2Skill`::class.java,
 
@@ -63,11 +63,14 @@ class Skill {
 
                 SuperLucky7Skill::class.java,
 
+
                 SnowyBuff1Skill::class.java,
                 SnowyBuff2Skill::class.java,
 
+
                 RainyBuff1Skill::class.java,
                 RainyBuff2Skill::class.java,
+
 
                 SunnyBuff1Skill::class.java,
                 SunnyBuff2Skill::class.java,
@@ -81,8 +84,10 @@ class Skill {
                 `13DebuffSkill`::class.java,
                 `68DebuffSkill`::class.java,
 
+
                 MonopolySkill::class.java,
                 BondageSkill::class.java,
+
 
                 MagicianSkill::class.java,
                 BlindfoldSkill::class.java,

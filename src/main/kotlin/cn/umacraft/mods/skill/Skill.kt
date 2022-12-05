@@ -112,7 +112,8 @@ class Skill {
                             if (skill.isPassive) 10000000 * 20 else 10 * 20,
                             skill.speed.absoluteValue - 1
                         )
-                    ); println("player ${player.name.string}, at ISelfSpeedable, added Effect of $skill")
+                    )
+                    println("player ${player.name.string}, at ISelfSpeedable, added Effect of $skill")
                 }
 
                 // server side
@@ -120,14 +121,17 @@ class Skill {
                 if (player.isServerWorld && player.server != null) {
                     val server = player.server!!
                     val playerList = server.playerList
-                    val players = playerList.players.toMutableList().apply {
+                    /*val players = playerList.players.toMutableList().apply {
                         remove(player)
                         forEach {
                             if (it.name.string in playerList.oppedPlayerNames) {
                                 remove(it)
                             }
                         }
-                    }
+                    }*/
+
+                    val players =
+                        playerList.players.filterNot { (it == player) || (it.name.string in playerList.oppedPlayerNames) }
 
                     println(players)
 

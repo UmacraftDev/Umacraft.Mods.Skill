@@ -40,8 +40,7 @@ class SkillParticle(
     speed: Vector3d,
     color: Color?,
     diameter: Float
-) :
-    SpriteTexturedParticle(world!!, x, y, z, speed.x, speed.y, speed.z) {
+) : SpriteTexturedParticle(world!!, x, y, z, speed.x, speed.y, speed.z) {
     init {
         maxAge = 100
         motionX = speed.x
@@ -60,8 +59,7 @@ class SkillParticle(
 
 
 class SkillParticleType : ParticleType<SkillParticleData>(false, SkillParticleData.DESERIALIZER) {
-    override fun func_230522_e_(): Codec<SkillParticleData>? {
-        return null
+    override fun func_230522_e_(): Codec<SkillParticleData> {
+        return Codec.unit(SkillParticleData::class.java.newInstance())
     }
 }
-

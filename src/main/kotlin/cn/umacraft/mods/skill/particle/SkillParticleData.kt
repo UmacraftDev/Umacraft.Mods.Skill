@@ -24,7 +24,7 @@
  */
 package cn.umacraft.mods.skill.particle
 
-import cn.umacraft.mods.skill.Skill
+import cn.umacraft.mods.skill.util.SKILL_PARTICLE
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.exceptions.CommandSyntaxException
 import net.minecraft.network.PacketBuffer
@@ -38,7 +38,7 @@ import java.util.*
 
 class SkillParticleData(val speed: Vector3d, val color: Color, val diameter: Float) : IParticleData {
     override fun getType(): ParticleType<*> {
-        return Skill.SKILL_PARTICLE.get()
+        return SKILL_PARTICLE.get()
     }
 
     override fun write(buffer: PacketBuffer) {

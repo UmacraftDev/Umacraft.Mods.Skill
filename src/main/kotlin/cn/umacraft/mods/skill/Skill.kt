@@ -34,22 +34,18 @@ import net.minecraft.item.Item
 import net.minecraft.potion.EffectInstance
 import net.minecraft.potion.Effects
 import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.TickEvent.PlayerTickEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import net.minecraftforge.registries.DeferredRegister
 import kotlin.math.absoluteValue
 
 @Mod(MOD_ID)
 class Skill {
-    companion object {
-        val SKILL_PARTICLE = PARTICLE_TYPES.register("skill_particle") { SkillParticleType() }!!
-    }
-
     init {
         FMLJavaModLoadingContext.get().modEventBus.apply {
             ITEMS.register(this)
@@ -59,6 +55,16 @@ class Skill {
         MinecraftForge.EVENT_BUS.register(this)
 
         ITEMS.registerAll()
+        SKILL_PARTICLE = PARTICLE_TYPES.register("skill_particle") { SkillParticleType() }!!
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    fun registerParticleFactory(event: ParticleFactoryRegisterEvent) {
+        Minecraft.getInstance().particles.registerFactory(
+            SKILL_PARTICLE.get(),
+            SkillParticleFactory::class.java.newInstance()
+        )
     }
 
     @SubscribeEvent
@@ -114,10 +120,10 @@ class Skill {
                     }
 
                     if (skillType is IOtherSpeedable) players.forEach {
-                        val ridingEntity = it.ridingEntity
-                        if (ridingEntity == null || ridingEntity !is AbstractHorseEntity) return@forEach
+                        val innerRidingEntity = it.ridingEntity
+                        if (innerRidingEntity == null || innerRidingEntity !is AbstractHorseEntity) return@forEach
 
-                        ridingEntity.addPotionEffect(
+                        innerRidingEntity.addPotionEffect(
                             EffectInstance(
                                 if (skillType.speed >= 0) Effects.SPEED else Effects.SLOWNESS,
                                 if (skill.isPassive) 10000000 * 20 else 10 * 20,
@@ -137,16 +143,5 @@ fun DeferredRegister<Item>.registerAll() {
     SKILLS.forEach {
         val instance = FatherSkill(it)
         this.register(instance.registryTag) { instance }
-    }
-}
-
-@EventBusSubscriber(modid = MOD_ID, value = [Dist.CLIENT], bus = EventBusSubscriber.Bus.MOD)
-object ParticleFactoryRegistry {
-    @SubscribeEvent
-    fun registerParticleFactory(event: ParticleFactoryRegisterEvent?) {
-        Minecraft.getInstance().particles.registerFactory(
-            Skill.SKILL_PARTICLE.get(),
-            SkillParticleFactory::class.java.newInstance()
-        )
     }
 }

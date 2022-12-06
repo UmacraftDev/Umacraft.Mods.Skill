@@ -24,9 +24,11 @@
  */
 package cn.umacraft.mods.skill.util
 
+import cn.umacraft.mods.skill.particle.SkillParticleType
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
+import net.minecraftforge.fml.RegistryObject
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 
@@ -37,3 +39,4 @@ val itemGroup = object : ItemGroup("uc_skills") {
 val ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)!!
 
 val PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, MOD_ID)!!
+lateinit var SKILL_PARTICLE: RegistryObject<SkillParticleType>

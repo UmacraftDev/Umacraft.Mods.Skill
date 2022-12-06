@@ -22,29 +22,24 @@
  * Please contact us by email xray_yang@foxmail.com
  * if you need additional information or have any questions
  */
-package cn.umacraft.mods.skill.skill.gold
+package cn.umacraft.mods.skill.skill
 
-import cn.umacraft.mods.skill.skill.FatherSkill
-import cn.umacraft.mods.skill.skill.ISelfSpeedable
+import net.minecraft.potion.Effect
 
-class Speed1Skill : FatherSkill(), ISelfSpeedable {
-    override val speed: Int
-        get() = 1
+interface FatherSkillType
 
-    override val registryTag: String
-        get() = "gold_speed1"
-
-    override val isPassive: Boolean
-        get() = false
+interface ISelfSpeedable : FatherSkillType {
+    val speed: Int
 }
 
-class Speed2Skill : FatherSkill(), ISelfSpeedable {
-    override val speed: Int
-        get() = 2
+interface IOtherSpeedable : FatherSkillType {
+    val speed: Int
+}
 
-    override val registryTag: String
-        get() = "gold_speed2"
+interface IOtherPlayerEffect : FatherSkillType {
+    val playerEffect: Effect
 
-    override val isPassive: Boolean
-        get() = false
+    val duration: Int
+
+    val level: Int
 }

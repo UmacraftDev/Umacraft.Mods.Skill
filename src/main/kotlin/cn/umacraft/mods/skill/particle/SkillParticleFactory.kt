@@ -22,18 +22,25 @@
  * Please contact us by email xray_yang@foxmail.com
  * if you need additional information or have any questions
  */
-package cn.umacraft.mods.skill.util
+package cn.umacraft.mods.skill.particle
 
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
+import net.minecraft.client.particle.IAnimatedSprite
+import net.minecraft.client.particle.IParticleFactory
+import net.minecraft.client.particle.Particle
+import net.minecraft.client.world.ClientWorld
 
-const val MOD_ID = "skill"
-val itemGroup = object : ItemGroup("uc_skills") {
-    override fun createIcon(): ItemStack = ItemStack(Items.PAPER)
+class SkillParticleFactory(private val sprites: IAnimatedSprite) : IParticleFactory<SkillParticleData> {
+    override fun makeParticle(
+        data: SkillParticleData,
+        world: ClientWorld,
+        x: Double,
+        y: Double,
+        z: Double,
+        xSpeed: Double,
+        ySpeed: Double,
+        zSpeed: Double
+    ): Particle {
+        //particle.selectSpriteRandomly(sprites); 因为目前还没做材质
+        return SkillParticle(world, x, y, z, data.speed, data.color, data.diameter)
+    }
 }
-val ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID)!!
-
-val PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, MOD_ID)!!

@@ -24,27 +24,36 @@
  */
 package cn.umacraft.mods.skill
 
+import cn.umacraft.mods.skill.particle.SkillParticleFactory
+import cn.umacraft.mods.skill.particle.SkillParticleType
 import cn.umacraft.mods.skill.skill.*
-import cn.umacraft.mods.skill.util.ITEMS
-import cn.umacraft.mods.skill.util.MOD_ID
-import cn.umacraft.mods.skill.util.TempData
+import cn.umacraft.mods.skill.util.*
+import net.minecraft.client.Minecraft
 import net.minecraft.entity.passive.horse.AbstractHorseEntity
 import net.minecraft.item.Item
 import net.minecraft.potion.EffectInstance
 import net.minecraft.potion.Effects
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.TickEvent.PlayerTickEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import net.minecraftforge.registries.DeferredRegister
 import kotlin.math.absoluteValue
 
 @Mod(MOD_ID)
 class Skill {
+    companion object {
+        val SKILL_PARTICLE = PARTICLE_TYPES.register("skill_particle") { SkillParticleType() }!!
+    }
+
     init {
         FMLJavaModLoadingContext.get().modEventBus.apply {
             ITEMS.register(this)
+            PARTICLE_TYPES.register(this)
         }
 
         MinecraftForge.EVENT_BUS.register(this)
@@ -128,5 +137,16 @@ fun DeferredRegister<Item>.registerAll() {
     SKILLS.forEach {
         val instance = FatherSkill(it)
         this.register(instance.registryTag) { instance }
+    }
+}
+
+@EventBusSubscriber(modid = MOD_ID, value = [Dist.CLIENT], bus = EventBusSubscriber.Bus.MOD)
+object ParticleFactoryRegistry {
+    @SubscribeEvent
+    fun registerParticleFactory(event: ParticleFactoryRegisterEvent?) {
+        Minecraft.getInstance().particles.registerFactory(
+            Skill.SKILL_PARTICLE.get(),
+            SkillParticleFactory::class.java.newInstance()
+        )
     }
 }
